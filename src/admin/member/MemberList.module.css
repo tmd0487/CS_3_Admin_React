@@ -1,0 +1,105 @@
+/* src/admin/member/MemberList.module.css */
+
+/* 카드 그리드 */
+.cardGrid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 페이지네이션 아래 고정 */
+}
+
+/* 리스트 헤더 */
+.listHeader {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+/* 데이터 행 */
+.listRow {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 75px;
+}
+
+/* 컬럼 정렬 */
+.listColNumber,
+.listColUsername,
+.listColNickname {
+  text-align: left;
+  padding: 0 8px;
+}
+
+/* 작성일과 신고횟수 오른쪽 끝으로 살짝 이동 */
+.listColDate {
+  text-align: center;
+  padding: 0 8px;
+  margin-left: auto; /* 남는 공간 다 차지 */
+  width: 150px;      /* 조금 넓게 */
+}
+
+.listColReport {
+  text-align: center;
+  padding: 0 12px;   /* 간격 조절 */
+  width: 120px;        /* 넓혀서 찌그러짐 방지 */
+}
+
+/* 컬럼 너비 */
+.listColNumber { width: 80px; }
+.listColUsername { width: 25%; }
+.listColNickname { width: 25%; }
+
+/* 페이지네이터 */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto; /* flex column에서 아래로 밀어내기 */
+  padding-top: 10px;
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 6px;
+}
+
+.pageBtn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activePage {
+  background-color: #ADB9E3 !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.pageControl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #696b70;
+}
+
+.pageControl:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
