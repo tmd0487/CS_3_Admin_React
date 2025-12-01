@@ -1,0 +1,184 @@
+/* ===============================
+   전체 컨테이너
+=============================== */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: white;
+  font-family: 'Arial', sans-serif;
+  gap: 20px;
+  /* border:1px solid black; */
+}
+
+/* 상단 필터 영역 */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  /* border:1px solid black; */
+}
+
+.leftGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.categoryList {
+  display: flex;
+  gap: 12px;
+}
+
+.board {
+  width: 200px;
+  height: 48px;
+  border-radius: 20px;
+  border: 1px solid #ADB9E3;
+  color: #696B70;
+  background-color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.comment {
+  width: 200px;
+  height: 48px;
+  border-radius: 20px;
+  border: 1px solid #ADB9E3;
+  color: #696B70;
+  background-color: white;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.activeTab {
+  background-color: #ADB9E3;
+  color: white;
+}
+
+/* ===============================
+   게시물 리스트
+=============================== */
+.cardGrid {
+  flex: 1; /* 남는 공간 모두 차지 */
+  display: flex;
+  flex-direction: column;
+  
+}
+
+/* 헤더는 고정 높이 */
+.listHeader {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: white;
+  border-bottom: 1px solid #ccc;
+}
+
+/* 데이터 행 */
+.listRow {
+  display: flex;
+  align-items: center;
+  /* border-bottom: 1px solid #eee; */
+  cursor: pointer;
+  height: 58px; /* 행 높이 고정, 필요하면 조정 */
+}
+
+/* 컬럼 정렬 */
+.listColTitle { text-align: left; margin-right: 8px; }
+.listColNumber,
+.listColAuthor,
+.listColDate,
+.listColReport {
+  text-align: center;
+  padding: 0 8px; /* 컬럼 안쪽 간격 */
+}
+
+.listColAuthor { margin-left: 8px; }
+.listColDate { margin-left: 8px; }
+.listColReport { margin-left: 8px; }
+
+/* 컬럼 너비 */
+.listColNumber { width: 100px; }
+.listColTitle { width: 60%; }
+.listColAuthor { width: 15%; }
+.listColDate { width: 10%; }
+.listColReport { width: 10%; }
+
+/* 헤더 컬럼만 굵게 */
+.listHeader .listColNumber,
+.listHeader .listColTitle,
+.listHeader .listColAuthor,
+.listHeader .listColDate,
+.listHeader .listColReport {
+  font-weight: bold;
+}
+
+.listRow .listColNumber,
+.listRow .listColTitle,
+.listRow .listColAuthor,
+.listRow .listColDate,
+.listRow .listColReport {
+  font-weight: normal;
+}
+
+/* ===============================
+   페이지네이터
+=============================== */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto; /* 맨 아래로 밀어냄 */
+  padding-top: 10px;
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 6px;
+}
+
+.pageBtn {
+  min-width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  /* border: 1px solid #ccc; */
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activePage {
+  background-color: #ADB9E3 !important;
+  color: white !important;
+  font-weight: bold;
+}
+
+.pageControl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px; /* << < > >> 글자 크기 */
+  font-weight: bold;
+  color: #696b70;
+}
+
+.pageControl:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

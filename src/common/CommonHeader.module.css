@@ -1,0 +1,133 @@
+.topbar {
+  width: 100%;
+  height: 70px;
+  background-color: #fff;
+  border-bottom: 1px solid #b9b9b9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: 16px;
+  color: #696b70;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+/* 콘텐츠 래퍼 */
+.headerContentWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 118px;
+  margin: 0 auto;
+}
+
+/* 좌측 섹션 (로고 + 메뉴) */
+.leftSection {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+/* 로고 */
+.logoIcon {
+  width: 40px;
+  height: 40px;
+}
+
+/* 메뉴 아이템 컨테이너 */
+.menuItems {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* 메뉴 아이템 */
+.menuItemBox {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.menuItemBox .menuItem {
+  text-decoration: none;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #696b70;
+}
+
+.menuItemBox:hover .menuItem,
+.menuActive .menuItem {
+  font-weight: bold;
+  color: #f0d827;
+}
+
+/* 메뉴 밑줄 */
+.menuItemBox::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #f0d827;
+  transition: width 0.3s ease;
+}
+
+.menuItemBox:hover::after,
+.menuActive::after {
+  width: 100%;
+}
+
+/* 로그아웃 박스 */
+.logoutBox {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 10px;
+  position: relative;
+}
+
+/* 로그아웃 글씨 */
+.logoutBox .menuItem {
+  font-size: 16px;
+  color: #696b70;
+  transition: color 0.3s ease;
+}
+
+/* hover 시 글씨 + 아이콘 색상 변경 */
+.logoutBox:hover .menuItem,
+.logoutBox:hover .logoutIcon {
+  color: #f0d827;
+  stroke: #f0d827; /* lucide-react 아이콘 색상 */
+  font-weight: bold;
+}
+
+/* 로그아웃 밑줄 */
+.logoutBox::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background-color: #f0d827;
+  transition: width 0.3s ease;
+}
+
+.logoutBox:hover::after {
+  width: 100%;
+}
+
+/* 로그아웃 아이콘 */
+.logoutIcon {
+  width: 30px;
+  height: 30px;
+}

@@ -1,0 +1,46 @@
+/* 전체 레이아웃 */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 상단 네비 영역 */
+.MemberHeader {
+  flex: 0 0 auto;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* 메인 내용 */
+.layoutMain {
+  flex: 1;
+  height: calc(100vh - 98px);
+  overflow: hidden;
+  padding: 20px 118px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #ffffff; /* 항상 흰색 */
+}
+
+.layoutMainYellow {
+  flex: 1;
+  height: calc(100vh - 98px);
+  padding: 20px 118px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #ffffff !important; /* 항상 흰색 */
+}
+
+/* 반응형 */
+@media (max-width: 1400px) {
+  .layoutMain,
+  .layoutMainYellow {
+    padding: 0 20px;
+  }
+}
