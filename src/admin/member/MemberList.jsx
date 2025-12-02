@@ -1,43 +1,46 @@
 import React, { useState } from "react";
 import styles from "./MemberList.module.css";
-import { MOCK_MEMBERS } from "./mockData";
 import MemberDetail from "./MemberDetail";
+import useMemberList from "./useMemberList";
 
 const ITEMS_PER_PAGE = 10;
 
 const MemberList = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedMember, setSelectedMember] = useState(null);
+  const [newRender, setNewRender] = useState(false);
 
-  const totalPages = Math.ceil(MOCK_MEMBERS.length / ITEMS_PER_PAGE);
+  const { data = [] } = useMemberList(newRender);
+
+  const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentItems = MOCK_MEMBERS.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  const currentItems = data.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   return (
     <div className={styles.cardGrid}>
       {/* 헤더 */}
       <div className={styles.listHeader}>
-        <div className={styles.listColNumber}>번호</div>
+        <div className={styles.listColNumber}></div>
         <div className={styles.listColUsername}>아이디</div>
         <div className={styles.listColNickname}>닉네임</div>
-        <div className={styles.listColDate}>작성일</div>
+        <div className={styles.listColDate}>가입일</div>
         <div className={styles.listColReport}>신고횟수</div>
       </div>
 
       {/* 데이터 행 */}
-      {currentItems.map((member) => (
+      {currentItems.length > 0 ? currentItems.map((member, index) => (
         <div
-          key={member.id}
+          key={index}
           className={styles.listRow}
           onClick={() => setSelectedMember(member)}
         >
-          <div className={styles.listColNumber}>{member.id}</div>
-          <div className={styles.listColUsername}>{member.username}</div>
+          <div className={styles.listColNumber}>{(currentPage - 1) * ITEMS_PER_PAGE + index + 1}</div>
+          <div className={styles.listColUsername}>{member.user_id}</div>
           <div className={styles.listColNickname}>{member.nickname}</div>
-          <div className={styles.listColDate}>{member.date}</div>
-          <div className={styles.listColReport}>{member.reports}</div>
+          <div className={styles.listColDate}>{member.birth_date}</div>
+          <div className={styles.listColReport}>{member.last_baby}</div>
         </div>
-      ))}
+      )) : <div>가입유저가 존재하지 않습니다.</div>}
 
       {/* 페이지네이터 */}
       <div className={styles.pagination}>
@@ -62,7 +65,7 @@ const MemberList = () => {
 
       {/* 모달 */}
       {selectedMember && (
-        <MemberDetail member={selectedMember} onClose={() => setSelectedMember(null)} />
+        <MemberDetail member={selectedMember} setNewRender={setNewRender} onClose={() => setSelectedMember(null)} />
       )}
     </div>
   );

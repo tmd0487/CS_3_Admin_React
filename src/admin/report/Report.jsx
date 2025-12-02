@@ -3,7 +3,6 @@ import BoardList from "./BoardList";
 import BoardDetail from "./BoardDetail";
 import CommentList from "./CommentList";
 import CommentDetail from "./CommentDetail"; // 추가
-import { MOCK_BOARD, MOCK_COMMENT } from "./mockData";
 import styles from "./Report.module.css";
 import { sendAdminMessage } from "../../webSocket/connectWebSocket";
 
