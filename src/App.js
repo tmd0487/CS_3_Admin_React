@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './admin/login/login';
 import useAuthStore from './store/useAuthStore';
 import MainIndex from './mainIndex/MainIndex'; // 새로 만든 MainIndex
+import { connectAdminWebSocket } from './webSocket/connectWebSocket';
 
 function App() {
   const {isLogin, login} = useAuthStore(state => state);
@@ -14,6 +15,7 @@ function App() {
     const id = sessionStorage.getItem("id");
     if (token) {
       login(token, id);
+      connectAdminWebSocket(token);
     }
   }, [])
 

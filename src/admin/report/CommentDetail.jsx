@@ -1,25 +1,46 @@
 // src/admin/report/CommentDetail.jsx
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./CommentDetail.module.css";
+import { caxios } from "../../config/config";
 
-const CommentDetail = ({ comment, onClose, onDelete }) => {
+const CommentDetail = ({ comment, setSelectedComment, onClose, onDelete }) => {
+
+  useEffect(() => {
+    caxios.get("/report/commentDetail", { params: { comment_seq: comment.comment_seq } })
+      .then(resp => {
+        setSelectedComment(prev => ({
+          ...prev,
+          report_types: resp.data.map(item => item.report_type)
+        }));
+      })
+  }, []);
+
   if (!comment) return null;
 
-  // comment 객체에 reports 필드가 있다고 가정하고 0으로 대체합니다.
-  const reportCount = comment.reports || 0; 
-  
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
         {/* 1. 작성자 및 메타 정보 */}
-        <h3 className={styles.modalAuthor}>{comment.author}</h3>
+        <h3 className={styles.modalAuthor}>{comment.user_id}</h3>
         <div className={styles.modalMeta}>
-          <span className={styles.modalDate}>{comment.date}</span>
-          <span className={styles.modalReport}>{reportCount}</span>
+          <span className={styles.modalDate}>{comment.created_at}</span>
+          {/* <span className={styles.modalDate}>신고횟수 : {comment.is_deleted}</span> */}
+          <span className={styles.modalReport}>신고사유 :
+            {comment.report_types &&
+              Object.entries(
+                comment.report_types.reduce((acc, type) => {
+                  acc[type] = (acc[type] || 0) + 1;
+                  return acc;
+                }, {})
+              ).map(([type, count]) => (
+                <span key={type}>{`${type}(${count})`} </span>
+              ))
+            }
+          </span>
         </div>
-        
+
         {/* 2. 댓글 내용 */}
-        <p className={styles.modalComment}>{comment.comment}</p>
+        <p className={styles.modalComment}>{comment.comment_content}</p>
 
         {/* 3. 버튼 영역 */}
         <div className={styles.buttons}>

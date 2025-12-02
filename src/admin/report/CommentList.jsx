@@ -1,12 +1,14 @@
 // src/admin/report/CommentList.jsx
 import React, { useState } from "react";
 import styles from "./BoardList.module.css"; // 기존 스타일 그대로 재사용
+import useCommentList from "./useCommentList";
 
 const ITEMS_PER_PAGE = 10;
 
-const CommentList = ({ data, onSelectComment }) => {
+const CommentList = ({ newRender, onSelectComment }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
+  const { data = [] } = useCommentList(newRender);
   const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const currentItems = data.slice(startIndex, startIndex + ITEMS_PER_PAGE);
@@ -21,19 +23,19 @@ const CommentList = ({ data, onSelectComment }) => {
         <div className={styles.listColReport}>신고횟수</div>
       </div>
 
-      {currentItems.map((item) => (
+      {currentItems.length > 0 ? currentItems.map((item) => (
         <div
           key={item.id}
           className={styles.listRow}
           onClick={() => onSelectComment(item)}
         >
-          <div className={styles.listColNumber}>{item.id}</div>
-          <div className={styles.listColTitle}>{item.comment}</div>
-          <div className={styles.listColAuthor}>{item.author}</div>
-          <div className={styles.listColDate}>{item.date}</div>
-          <div className={styles.listColReport}>{item.reports}</div>
+          <div className={styles.listColNumber}>{item.comment_seq}</div>
+          <div className={styles.listColTitle}>{item.comment_content}</div>
+          <div className={styles.listColAuthor}>{item.user_id}</div>
+          <div className={styles.listColDate}>{item.created_at}</div>
+          <div className={styles.listColReport}>{item.is_deleted}</div>
         </div>
-      ))}
+      )) : <div>신고 댓글이 존재하지 않습니다.</div>}
 
       {/* 페이지네이터 */}
       <div className={styles.pagination}>

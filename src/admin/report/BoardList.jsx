@@ -5,12 +5,9 @@ import useBoardList from "./useBoardList";
 
 const ITEMS_PER_PAGE = 10;
 
-const BoardList = ({ onSelectPost }) => {
+const BoardList = ({ newRender, onSelectPost }) => {
   const [currentPage, setCurrentPage] = useState(1);
-
-  const {
-    data
-  } = useBoardList();
+  const { data = [] } = useBoardList(newRender);
 
   const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -26,19 +23,19 @@ const BoardList = ({ onSelectPost }) => {
         <div className={styles.listColReport}>신고횟수</div>
       </div>
 
-      {currentItems.map((item) => (
+      {currentItems.length > 0 ? currentItems.map((item, index) => (
         <div
-          key={item.id}
+          key={index}
           className={styles.listRow}
           onClick={() => onSelectPost(item)}
         >
-          <div className={styles.listColNumber}>{item.id}</div>
+          <div className={styles.listColNumber}>{item.board_seq}</div>
           <div className={styles.listColTitle}>{item.title}</div>
-          <div className={styles.listColAuthor}>{item.author}</div>
-          <div className={styles.listColDate}>{item.date}</div>
-          <div className={styles.listColReport}>{item.reports}</div>
+          <div className={styles.listColAuthor}>{item.user_id}</div>
+          <div className={styles.listColDate}>{item.created_at}</div>
+          <div className={styles.listColReport}>{item.view_count}</div>
         </div>
-      ))}
+      )): <div>신고 댓글이 존재하지 않습니다.</div>}
 
       {/* 페이지네이터 */}
       <div className={styles.pagination}>

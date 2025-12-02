@@ -2,6 +2,7 @@ import { useState } from "react";
 import { caxios } from "../../config/config";
 import useAuthStore from "../../store/useAuthStore";
 import { useNavigate } from "react-router-dom";
+import { connectAdminWebSocket } from "../../webSocket/connectWebSocket";
 
 function useLogin() {
     // 로그인 준비
@@ -30,6 +31,7 @@ function useLogin() {
         caxios.post("/admin/login", { admin_id: data.id, password: data.pw })
             .then(resp => {
                 login(resp.data, data.id);
+                connectAdminWebSocket(resp.data);
                 navigate("/");
             })
             .catch(err => {
