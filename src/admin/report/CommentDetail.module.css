@@ -74,19 +74,29 @@
   border: none;
   font-size: 18px;
   font-weight: bold;
-  color: white;
+  color: #ffffff;
   cursor: pointer;
   transition: opacity 0.2s;
 }
 
 /* 뒤로가기 버튼 (회색) */
 .btnBack {
-  background-color: #A9A9A9; /* BoardDetail과 동일한 회색 */
+  background-color: #d9d9d9; /* BoardDetail과 동일한 회색 */
+}
+
+.btnBack:hover, .btnBack:active {
+  background-color: #b0b0b0;
+  transform: scale(0.98);
 }
 
 /* 삭제 버튼 (파스텔 블루/퍼플) */
 .btnDelete {
-  background-color: #ADB9E3; /* BoardList/BoardDetail과 유사한 파스텔 블루 */
+  background-color: #adb9e3; /* BoardList/BoardDetail과 유사한 파스텔 블루 */
+}
+
+.btnDelete:hover, .btnDelete:active {
+  background-color: #94a4d6;
+  transform: scale(0.98);
 }
 
 .modalDate {
