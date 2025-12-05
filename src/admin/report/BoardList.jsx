@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "./BoardList.module.css";
 import useBoardList from "./useBoardList";
+import { Inbox } from "lucide-react";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -35,7 +36,10 @@ const BoardList = ({ newRender, onSelectPost }) => {
           <div className={styles.listColDate}>{item.created_at}</div>
           <div className={styles.listColReport}>{item.view_count}</div>
         </div>
-      )): <div>신고 댓글이 존재하지 않습니다.</div>}
+      )) : <div className={styles.emptyMessage}>
+  <Inbox size={60}/>  {/* 아이콘 */}
+  <div>신고 게시글이 존재하지 않습니다</div>  {/* 텍스트 */}
+</div>}
 
       {/* 페이지네이터 */}
       <div className={styles.pagination}>

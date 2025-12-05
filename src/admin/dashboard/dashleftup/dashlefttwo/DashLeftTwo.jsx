@@ -63,6 +63,9 @@ const DashLeftTwo = () => {
                 align: "end",
                 clip: false,
                 padding: { left: 50 },
+                font: {
+                    lineHeight: 1.6
+                },
                 formatter: (value, context) => {
                     const b = bars[context.dataIndex];
                     const percentage = ((b.value / sum) * 100).toFixed(1);
@@ -75,7 +78,7 @@ const DashLeftTwo = () => {
     return (
         <div className={styles.twocontainer}>
             <div className={styles.ddsh}>댓글 신고</div>
-            <Bar data={data} options={options} style={{ margin: "20px 8px 40px 8px", width: "100%", height: "100%" }} />
+            <Bar data={data} options={options} style={{ padding: "20px 8px 40px 8px", width: "100%", height: "100%" }} />
         </div>
     );
 };

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./MemberList.module.css";
 import MemberDetail from "./MemberDetail";
 import useMemberList from "./useMemberList";
+import { Inbox } from "lucide-react";
 
 const ITEMS_PER_PAGE = 10;
 
@@ -40,7 +41,10 @@ const MemberList = () => {
           <div className={styles.listColDate}>{member.birth_date}</div>
           <div className={styles.listColReport}>{member.last_baby}</div>
         </div>
-      )) : <div>가입유저가 존재하지 않습니다.</div>}
+      )) : <div className={styles.emptyMessage}>
+  <Inbox size={60}/>  {/* 아이콘 */}
+  <div>신고 유저가 존재하지 않습니다</div>  {/* 텍스트 */}
+</div>}
 
       {/* 페이지네이터 */}
       <div className={styles.pagination}>

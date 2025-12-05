@@ -75,7 +75,7 @@ const DashLeftDown = () => {
     return (
         <div className={styles.rightcontainer} style={{ height: "300px" }}>
             <div className={styles.mem}>전체 연령층</div>
-            <Bar data={data} options={options} style={{ margin: "10px 15px 25px 3px" }} />
+            <Bar data={data} options={options} style={{ padding: "10px 15px 25px 3px" }} />
         </div>
     );
 };
